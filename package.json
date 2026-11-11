@@ -1,0 +1,13 @@
+{
+  "name": "site-sfdc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site de la SFDC – Société française de dentisterie en cancérologie",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && npx wrangler@4 pages dev dist",
+    "check": "node build.mjs && node scripts/check-links.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

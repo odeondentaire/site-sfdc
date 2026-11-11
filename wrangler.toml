@@ -1,0 +1,14 @@
+# Configuration Cloudflare Pages – site de la SFDC
+name = "site-sfdc"
+compatibility_date = "2025-09-01"
+pages_build_output_dir = "dist"
+
+# Bucket R2 : formulaires (adhésions, contact), documents PDF, médias.
+[[r2_buckets]]
+binding = "SFDC_BUCKET"
+bucket_name = "database-sfdc"
+
+[vars]
+# Lien de paiement de la cotisation (à renseigner quand il sera disponible).
+# Laisser vide : le bouton de paiement ne s'affiche pas après l'adhésion.
+PAYMENT_URL = ""

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" role="img" aria-label="SFDC – Société française de dentisterie en cancérologie">
+  <!-- Logo PROVISOIRE reconstitué d'après la charte (bleu #2F5496, dent au trait #859BC2). À remplacer par le fichier officiel. -->
+  <path d="M20 8C12 8 8 14 8 22c0 8 4 12 6 20s3 16 8 16 5-12 10-12 5 12 10 12 6-8 8-16 6-12 6-20c0-8-4-14-12-14-6 0-8 3-12 3s-6-3-12-3Z" transform="translate(8 8) scale(1.6)" fill="none" stroke="#859BC2" stroke-width="2.6" stroke-linejoin="round"/>
+  <text x="128" y="66" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="52" fill="#2F5496" letter-spacing="2">SFDC</text>
+  <text x="130" y="96" font-family="Source Serif 4, Georgia, serif" font-size="17" fill="#2F5496">Société française de dentisterie en cancérologie</text>
+</svg>

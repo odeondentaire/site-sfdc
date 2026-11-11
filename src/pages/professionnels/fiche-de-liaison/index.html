@@ -1,0 +1,91 @@
+<!--{"title":"Fiche de liaison bucco-dentaire","description":"Fiche de liaison SFDC à imprimer pour orienter un patient atteint de cancer vers un chirurgien-dentiste et faciliter la coordination des soins.","nav":"pro","bodyClass":"page-fiche"}-->
+<section class="page-hero no-print">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">Accueil</a> › <a href="/professionnels/">Professionnels</a> › Fiche de liaison</p>
+    <h1>Fiche de liaison bucco-dentaire</h1>
+    <p class="lead">À remplir à l'écran ou à la main, puis à imprimer ou enregistrer en PDF. Les informations saisies restent dans votre navigateur : <strong>rien n'est envoyé ni enregistré par le site.</strong></p>
+    <div class="btn-row">
+      <button class="btn btn-primary" type="button" data-print>Imprimer / enregistrer en PDF</button>
+    </div>
+    <p class="form-legal"><span class="todo">Modèle provisoire : à valider par le comité scientifique de la SFDC</span></p>
+  </div>
+</section>
+
+<section class="section fiche">
+  <div class="container narrow">
+    <div class="fiche-head">
+      <p class="fiche-brand">SFDC – Société française de dentisterie en cancérologie</p>
+      <h2 class="mt-0">Fiche de liaison oncologie ↔ chirurgien-dentiste</h2>
+    </div>
+
+    <div class="form fiche-form" role="group" aria-label="Fiche de liaison">
+      <fieldset class="fiche-block">
+        <legend>1. Professionnel émetteur</legend>
+        <div class="form-row">
+          <div class="field"><label for="f-em-nom">Nom, prénom</label><input id="f-em-nom" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-em-fonction">Fonction / spécialité</label><input id="f-em-fonction" type="text" autocomplete="off"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="f-em-structure">Structure</label><input id="f-em-structure" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-em-contact">Téléphone / e-mail professionnels</label><input id="f-em-contact" type="text" autocomplete="off"></div>
+        </div>
+        <div class="field"><label for="f-date">Date</label><input id="f-date" type="text" autocomplete="off" placeholder="jj/mm/aaaa"></div>
+      </fieldset>
+
+      <fieldset class="fiche-block">
+        <legend>2. Patient</legend>
+        <div class="form-row">
+          <div class="field"><label for="f-pt-nom">Nom, prénom</label><input id="f-pt-nom" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-pt-naiss">Date de naissance</label><input id="f-pt-naiss" type="text" autocomplete="off" placeholder="jj/mm/aaaa"></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="fiche-block">
+        <legend>3. Contexte oncologique</legend>
+        <div class="form-row">
+          <div class="field"><label for="f-loc">Localisation du cancer</label><input id="f-loc" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-meta">Métastases (localisation)</label><input id="f-meta" type="text" autocomplete="off"></div>
+        </div>
+        <div class="field">
+          <span class="field-label">Traitements prévus ou en cours</span>
+          <label class="choice"><input type="checkbox"> Chimiothérapie</label>
+          <label class="choice"><input type="checkbox"> Radiothérapie – zone : ……………………………</label>
+          <label class="choice"><input type="checkbox"> Hormonothérapie</label>
+          <label class="choice"><input type="checkbox"> Thérapie ciblée / immunothérapie</label>
+          <label class="choice"><input type="checkbox"> Traitement antirésorptif osseux (bisphosphonate, dénosumab)</label>
+          <label class="choice"><input type="checkbox"> Chirurgie</label>
+          <label class="choice"><input type="checkbox"> Autre : ……………………………</label>
+        </div>
+        <div class="field"><label for="f-debut">Date de début prévue des traitements</label><input id="f-debut" type="text" autocomplete="off" placeholder="jj/mm/aaaa"></div>
+      </fieldset>
+
+      <fieldset class="fiche-block">
+        <legend>4. Motif de l'orientation</legend>
+        <label class="choice"><input type="checkbox"> Bilan bucco-dentaire initial (annonce du cancer)</label>
+        <label class="choice"><input type="checkbox"> Bilan à l'apparition de métastases / avant traitement antirésorptif</label>
+        <label class="choice"><input type="checkbox"> Signe d'alerte : mucite, douleur, infection, sécheresse, mobilité dentaire, os exposé…</label>
+        <label class="choice"><input type="checkbox"> Gêne à l'alimentation / risque de dénutrition</label>
+        <div class="field"><label for="f-precisions">Précisions</label><textarea id="f-precisions" rows="3"></textarea></div>
+        <div class="field">
+          <span class="field-label">Délai souhaité</span>
+          <label class="choice"><input type="radio" name="delai"> Urgent</label>
+          <label class="choice"><input type="radio" name="delai"> Avant le début des traitements</label>
+          <label class="choice"><input type="radio" name="delai"> Dans les meilleurs délais</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fiche-block">
+        <legend>5. Retour du chirurgien-dentiste</legend>
+        <div class="field"><label for="f-constat">Constatations</label><textarea id="f-constat" rows="3"></textarea></div>
+        <div class="field"><label for="f-soins">Soins réalisés / programmés</label><textarea id="f-soins" rows="3"></textarea></div>
+        <div class="field"><label for="f-suivi">Recommandations et suivi proposé</label><textarea id="f-suivi" rows="3"></textarea></div>
+        <div class="form-row">
+          <div class="field"><label for="f-cd">Chirurgien-dentiste (nom, coordonnées professionnelles)</label><input id="f-cd" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-cd-date">Date</label><input id="f-cd-date" type="text" autocomplete="off" placeholder="jj/mm/aaaa"></div>
+        </div>
+      </fieldset>
+    </div>
+
+    <p class="form-legal">Document confidentiel contenant des données de santé : à transmettre uniquement par un canal sécurisé (messagerie sécurisée de santé, remise en main propre). Fiche proposée par la SFDC – sfdc-cancer.fr</p>
+  </div>
+</section>
