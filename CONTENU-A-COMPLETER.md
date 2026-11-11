@@ -13,15 +13,16 @@ Pour les lister : `grep -rn 'class="todo"' src/`.
   comité scientifique, parrains. Le détail du budget et les notes internes ne sont pas publiés.
 - Présentation CPTS : objectifs pédagogiques, dépistage « 90 secondes », signes d'alerte,
   orientation, parcours, rôles, fiche de liaison, références.
-- La Lettre de l'ONCD n° 231 (juillet-août 2026, p. 8) : soutien de l'Ordre et extrait de la tribune.
+- La Lettre de l'ONCD n° 231 (juillet-août 2026, p. 8) : soutien de l'Ordre.
+- La Lettre de l'ONCD n° 226 (décembre 2025, p. 30) : tribune du Pr Muriel Dahan.
+- Soirée CPTS du 19 novembre 2026 (page de la CPTS Paris Neuf).
+- Stockage des données dans l'Union européenne.
+- E-mail des demandes d'adhésion vers sfdc.dentcancer@gmail.com (à activer : clé Brevo, voir README).
 
 ## Reste à fournir
-- [ ] Prénoms complets et rattachements : Dr J.-J. Baranes, Dr G. Rougier, B. Heuls.
+- [ ] Prénom de B. Heuls (Europa Donna) ; rattachement du Dr Joseph John Baranes.
 - [ ] Références bibliographiques des chiffres clés (14-35 %, 30-40 %, 8-9 %, ≈ 10 %).
-- [ ] Formation CPTS : date, horaires, lieu, modalités d'inscription.
-- [ ] Tribune du Pr Muriel Dahan : date et titre du n° 226 de La Lettre, lien éventuel.
 - [ ] Numéro RNA (et SIRET le cas échéant).
 - [ ] Valider les durées de conservation des données (politique de confidentialité).
-- [ ] Localisation du bucket R2 (juridiction UE recommandée).
 - [ ] Photos réelles, à déposer dans R2 sous `medias/`.
 - [ ] Montant de la cotisation : quand il sera fixé, il pourra être affiché sur la page Adhérer.

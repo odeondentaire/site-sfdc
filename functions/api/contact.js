@@ -1,6 +1,7 @@
 // POST /api/contact : enregistre un message de contact (ou une demande
 // d'adhésion) dans R2, sous formulaires/contact/ ou formulaires/adhesions/.
 import { json, readJson, isBot, clean, store, handle } from "../../server/forms.js";
+import { notifyAdhesion } from "../../server/notify.js";
 
 const PROFILS = [
   "Demande d'adhésion",
@@ -23,7 +24,7 @@ const SCHEMA = {
   consentement: { label: "Consentement", required: true, oneOf: ["oui"] },
 };
 
-export const onRequestPost = ({ request, env }) =>
+export const onRequestPost = ({ request, env, waitUntil }) =>
   handle(request, async () => {
     const raw = await readJson(request);
     if (isBot(raw)) return json({ ok: true }); // réponse neutre, rien n'est enregistré
@@ -33,6 +34,10 @@ export const onRequestPost = ({ request, env }) =>
       statut: adhesion ? "à traiter : envoyer montant de la cotisation et RIB" : "nouveau",
       donnees: data,
     });
+    // L'e-mail part en arrière-plan : un échec d'envoi ne bloque pas la demande (déjà dans R2).
+    if (adhesion) {
+      waitUntil(notifyAdhesion(env, data, id).catch((e) => console.error("Notification :", e)));
+    }
     return json({ ok: true, id });
   });
 
