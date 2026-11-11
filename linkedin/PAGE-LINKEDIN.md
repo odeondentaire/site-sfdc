@@ -9,7 +9,7 @@ Visuels (dans ce dossier) :
 | Champ LinkedIn | À saisir |
 |---|---|
 | Nom | Société française de dentisterie en cancérologie (SFDC) |
-| URL publique LinkedIn | linkedin.com/company/sfdc-cancer |
+| URL publique LinkedIn | https://www.linkedin.com/company/soci%C3%A9t%C3%A9-fran%C3%A7aise-de-dentisterie-en-canc%C3%A9rologie-sfdc/ (page créée) |
 | Site web | https://sfdc-cancer.fr |
 | Secteur | Hôpitaux et services de santé |
 | Taille de l'organisation | 2-10 employés |

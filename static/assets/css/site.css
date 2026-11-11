@@ -341,3 +341,5 @@ blockquote { margin: 0 0 1em; }
 .project-lead { margin-bottom: 24px; border-left: 4px solid var(--rose); }
 @media (min-width: 720px) { .project-lead { grid-template-columns: 96px 1fr; gap: 24px; } .project-lead .avatar { width: 96px; height: 96px; font-size: 1.6rem; } }
 .avatar-rose { background: #F6DDE3; color: var(--rose-fonce); }
+.social-link { display: inline-flex; align-items: center; gap: 8px; }
+.icon-li { width: 18px; height: 18px; fill: currentColor; flex: none; }
