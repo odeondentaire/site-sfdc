@@ -1,6 +1,6 @@
 // POST /api/contact : enregistre un message de contact (ou une demande
 // d'adhésion) dans R2, sous formulaires/contact/ ou formulaires/adhesions/.
-import { json, readJson, isBot, clean, store, handle } from "../../server/forms.js";
+import { json, readJson, isBot, clean, store, handle, setVersion } from "../../server/forms.js";
 import { notifyAdhesion } from "../../server/notify.js";
 
 const PROFILS = [
@@ -26,6 +26,7 @@ const SCHEMA = {
 
 export const onRequestPost = ({ request, env }) =>
   handle(request, async () => {
+    setVersion(env);
     const raw = await readJson(request);
     if (isBot(raw)) return json({ ok: true }); // réponse neutre, rien n'est enregistré
     const data = clean(raw, SCHEMA);
@@ -43,7 +44,11 @@ export const onRequestPost = ({ request, env }) =>
       donnees: data,
       ...(notification ? { notification } : {}),
     }, id);
-    return json({ ok: true, id });
+    // « email » indique seulement si l'e-mail d'adhésion est parti (le détail est dans R2).
+    return json(adhesion ? { ok: true, id, email: notification.sent ? "envoyé" : "non envoyé", code: notification.sent ? null : String(notification.reason).slice(0, 60) } : { ok: true, id });
   });
 
-export const onRequest = () => json({ ok: false, error: "Méthode non autorisée." }, 405);
+export const onRequest = ({ env }) => {
+  setVersion(env);
+  return json({ ok: false, error: "Méthode non autorisée." }, 405);
+};

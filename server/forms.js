@@ -5,10 +5,20 @@
 const MAX_BODY = 20_000; // octets
 const MIN_ELAPSED_MS = 2500; // anti-robot : délai minimal de remplissage
 
+// Version déployée (commit Git fourni par Cloudflare Pages), utile au diagnostic.
+let VERSION = "local";
+export function setVersion(env) {
+  if (env && env.CF_PAGES_COMMIT_SHA) VERSION = env.CF_PAGES_COMMIT_SHA.slice(0, 7);
+}
+
 export function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-SFDC-Version": VERSION,
+    },
   });
 }
 
