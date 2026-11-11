@@ -24,20 +24,25 @@ const SCHEMA = {
   consentement: { label: "Consentement", required: true, oneOf: ["oui"] },
 };
 
-export const onRequestPost = ({ request, env, waitUntil }) =>
+export const onRequestPost = ({ request, env }) =>
   handle(request, async () => {
     const raw = await readJson(request);
     if (isBot(raw)) return json({ ok: true }); // réponse neutre, rien n'est enregistré
     const data = clean(raw, SCHEMA);
     const adhesion = data.profil === "Demande d'adhésion";
-    const { id } = await store(env, adhesion ? "adhesions" : "contact", {
+    const id = crypto.randomUUID();
+    // Pour une adhésion, on tente l'e-mail puis on enregistre la demande avec le
+    // résultat de l'envoi (visible dans R2 en cas de problème). Un échec d'envoi
+    // n'empêche jamais l'enregistrement.
+    let notification;
+    if (adhesion) {
+      notification = await notifyAdhesion(env, data, id).catch((e) => ({ sent: false, reason: String(e) }));
+    }
+    await store(env, adhesion ? "adhesions" : "contact", {
       statut: adhesion ? "à traiter : envoyer montant de la cotisation et RIB" : "nouveau",
       donnees: data,
-    });
-    // L'e-mail part en arrière-plan : un échec d'envoi ne bloque pas la demande (déjà dans R2).
-    if (adhesion) {
-      waitUntil(notifyAdhesion(env, data, id).catch((e) => console.error("Notification :", e)));
-    }
+      ...(notification ? { notification } : {}),
+    }, id);
     return json({ ok: true, id });
   });
 

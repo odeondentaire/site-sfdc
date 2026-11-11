@@ -19,7 +19,8 @@ const LABELS = {
 };
 
 export async function notifyAdhesion(env, data, id) {
-  if (!env.BREVO_API_KEY || !env.NOTIFY_TO || !env.NOTIFY_FROM) return { sent: false, reason: "non configuré" };
+  if (!env.BREVO_API_KEY) return { sent: false, reason: "secret BREVO_API_KEY absent de ce déploiement" };
+  if (!env.NOTIFY_TO || !env.NOTIFY_FROM) return { sent: false, reason: "NOTIFY_TO / NOTIFY_FROM manquants" };
 
   const rows = Object.entries(LABELS).filter(([k]) => data[k]);
   const text =
@@ -42,10 +43,13 @@ export async function notifyAdhesion(env, data, id) {
       textContent: text,
       htmlContent: html,
     }),
+    signal: AbortSignal.timeout(8000),
   });
   if (!res.ok) {
-    console.error("Brevo:", res.status, await res.text());
-    return { sent: false, reason: `Brevo ${res.status}` };
+    const detail = (await res.text()).slice(0, 500);
+    console.error("Brevo:", res.status, detail);
+    return { sent: false, reason: `Brevo ${res.status} : ${detail}` };
   }
-  return { sent: true };
+  const body = await res.json().catch(() => ({}));
+  return { sent: true, messageId: body.messageId || null };
 }

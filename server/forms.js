@@ -62,10 +62,9 @@ export function clean(data, schema) {
 }
 
 /** Enregistre un formulaire dans R2 : formulaires/<dossier>/AAAA/MM/<horodatage>-<id>.json */
-export async function store(env, folder, record) {
+export async function store(env, folder, record, id = crypto.randomUUID()) {
   if (!env.SFDC_BUCKET) throw new FormError("Stockage indisponible (liaison R2 absente).", 500);
   const now = new Date();
-  const id = crypto.randomUUID();
   const iso = now.toISOString();
   const key = `formulaires/${folder}/${iso.slice(0, 4)}/${iso.slice(5, 7)}/${iso.replace(/[:.]/g, "-")}-${id}.json`;
   const payload = { id, formulaire: folder, recuLe: iso, ...record };
