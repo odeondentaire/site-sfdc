@@ -1,4 +1,4 @@
-// Notification par e-mail des demandes d'adhésion, via l'API transactionnelle
+// Notification par e-mail des demandes d'adhésion et des messages de contact, via l'API transactionnelle
 // de Brevo (société française, données hébergées dans l'Union européenne).
 // Configuration :
 //   - BREVO_API_KEY : secret à créer dans Cloudflare Pages (Settings → Variables and Secrets)
@@ -9,6 +9,7 @@ const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const LABELS = {
+  profil: "Profil",
   type_adhesion: "Type d'adhésion",
   nom: "Nom",
   email: "E-mail",
@@ -18,19 +19,28 @@ const LABELS = {
   message: "Message",
 };
 
-export async function notifyAdhesion(env, data, id) {
+export async function notifyForm(env, data, id, adhesion) {
   if (!env.BREVO_API_KEY) return { sent: false, reason: "secret BREVO_API_KEY absent de ce déploiement" };
   if (!env.NOTIFY_TO || !env.NOTIFY_FROM) return { sent: false, reason: "NOTIFY_TO / NOTIFY_FROM manquants" };
 
-  const rows = Object.entries(LABELS).filter(([k]) => data[k]);
+  const title = adhesion
+    ? "Nouvelle demande d'adhésion reçue sur sfdc-cancer.fr"
+    : "Nouveau message de contact reçu sur sfdc-cancer.fr";
+  const todo = adhesion
+    ? "À faire : répondre avec le montant de la cotisation et le RIB."
+    : "Pour répondre, utilisez simplement le bouton « Répondre ».";
+  const subject = adhesion
+    ? `Demande d'adhésion – ${data.nom}`
+    : `Contact (${data.profil}) – ${data.nom} – ${data.objet}`.slice(0, 180);
+  const rows = Object.entries(LABELS).filter(([k]) => data[k] && !(adhesion && k === "profil"));
   const text =
-    "Nouvelle demande d'adhésion reçue sur sfdc-cancer.fr\n\n" +
+    `${title}\n\n` +
     rows.map(([k, l]) => `${l} : ${data[k]}`).join("\n") +
-    `\n\nÀ faire : répondre avec le montant de la cotisation et le RIB.\nRéférence : ${id}\n`;
+    `\n\n${todo}\nRéférence : ${id}\n`;
   const html =
-    `<p><strong>Nouvelle demande d'adhésion reçue sur sfdc-cancer.fr</strong></p><table cellpadding="6">` +
-    rows.map(([k, l]) => `<tr><td><strong>${esc(l)}</strong></td><td>${esc(data[k]).replace(/\n/g, "<br>")}</td></tr>`).join("") +
-    `</table><p>À faire : répondre (bouton « Répondre ») avec le montant de la cotisation et le RIB.</p><p style="color:#777">Référence : ${esc(id)}</p>`;
+    `<p><strong>${esc(title)}</strong></p><table cellpadding="6">` +
+    rows.map(([k, l]) => `<tr><td valign="top"><strong>${esc(l)}</strong></td><td>${esc(data[k]).replace(/\n/g, "<br>")}</td></tr>`).join("") +
+    `</table><p>${esc(todo)}</p><p style="color:#777">Référence : ${esc(id)}</p>`;
 
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
@@ -39,7 +49,7 @@ export async function notifyAdhesion(env, data, id) {
       sender: { name: "Site SFDC", email: env.NOTIFY_FROM },
       to: [{ email: env.NOTIFY_TO, name: "SFDC" }],
       replyTo: { email: data.email, name: data.nom },
-      subject: `Demande d'adhésion – ${data.nom}`,
+      subject,
       textContent: text,
       htmlContent: html,
     }),

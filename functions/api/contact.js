@@ -1,7 +1,7 @@
 // POST /api/contact : enregistre un message de contact (ou une demande
 // d'adhésion) dans R2, sous formulaires/contact/ ou formulaires/adhesions/.
 import { json, readJson, isBot, clean, store, handle, setVersion } from "../../server/forms.js";
-import { notifyAdhesion } from "../../server/notify.js";
+import { notifyForm } from "../../server/notify.js";
 
 const PROFILS = [
   "Demande d'adhésion",
@@ -32,20 +32,16 @@ export const onRequestPost = ({ request, env }) =>
     const data = clean(raw, SCHEMA);
     const adhesion = data.profil === "Demande d'adhésion";
     const id = crypto.randomUUID();
-    // Pour une adhésion, on tente l'e-mail puis on enregistre la demande avec le
-    // résultat de l'envoi (visible dans R2 en cas de problème). Un échec d'envoi
-    // n'empêche jamais l'enregistrement.
-    let notification;
-    if (adhesion) {
-      notification = await notifyAdhesion(env, data, id).catch((e) => ({ sent: false, reason: String(e) }));
-    }
+    // On tente l'e-mail puis on enregistre la demande avec le résultat de l'envoi
+    // (visible dans R2 en cas de problème). Un échec d'envoi n'empêche jamais l'enregistrement.
+    const notification = await notifyForm(env, data, id, adhesion).catch((e) => ({ sent: false, reason: String(e) }));
     await store(env, adhesion ? "adhesions" : "contact", {
       statut: adhesion ? "à traiter : envoyer montant de la cotisation et RIB" : "nouveau",
       donnees: data,
-      ...(notification ? { notification } : {}),
+      notification,
     }, id);
-    // « email » indique seulement si l'e-mail d'adhésion est parti (le détail est dans R2).
-    return json(adhesion ? { ok: true, id, email: notification.sent ? "envoyé" : "non envoyé" } : { ok: true, id });
+    // « email » indique seulement si l'e-mail est parti (le détail est dans R2).
+    return json({ ok: true, id, email: notification.sent ? "envoyé" : "non envoyé" });
   });
 
 export const onRequest = ({ env }) => {

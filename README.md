@@ -41,12 +41,12 @@ npm run dev        # serveur local avec fonctions et R2 simulé (http://localhos
    Alternative possible : une règle « Bulk Redirects » dans Cloudflare.
 5. **Adhésions** : la page « Adhérer » renvoie vers le formulaire de contact (`/contact/?sujet=adhesion`).
    Les demandes sont enregistrées dans `formulaires/adhesions/` et envoyées par e-mail à
-   `sfdc.dentcancer@gmail.com` (voir « E-mails d'adhésion » ci-dessous). Le bureau répond avec le
+   `sfdc.dentcancer@gmail.com` (voir « E-mails des formulaires » ci-dessous). Le bureau répond avec le
    montant de la cotisation et le RIB (paiement par virement).
 
-## E-mails d'adhésion (Brevo)
+## E-mails des formulaires (Brevo)
 
-Chaque demande d'adhésion envoie un e-mail à `NOTIFY_TO` (`wrangler.toml`). Le bouton « Répondre »
+Chaque demande d'adhésion et chaque message de contact envoie un e-mail à `NOTIFY_TO` (`wrangler.toml`). Le bouton « Répondre »
 répond directement au candidat. Mise en place, une seule fois :
 
 1. Créer un compte gratuit sur brevo.com (300 e-mails par jour inclus).
@@ -57,6 +57,8 @@ répond directement au candidat. Mise en place, une seule fois :
    `BREVO_API_KEY` (environnement Production) avec la clé, puis redéployer.
 
 Sans la clé, rien n'est envoyé, mais les demandes restent enregistrées dans R2.
+Le résultat de chaque envoi est inscrit dans la section `notification` du fichier JSON correspondant.
+La clé Brevo doit avoir le droit d'envoyer des e-mails transactionnels (sinon : erreur 403).
 
 ## Organisation du bucket R2 `database-sfdc`
 

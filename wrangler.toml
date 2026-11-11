@@ -10,7 +10,7 @@ bucket_name = "database-sfdc"
 
 
 [vars]
-# Destinataire des e-mails de demande d'adhésion
+# Destinataire des e-mails des formulaires (adhésion et contact)
 NOTIFY_TO = "sfdc.dentcancer@gmail.com"
 # Expéditeur : adresse du domaine sfdc-cancer.fr authentifiée dans Brevo
 NOTIFY_FROM = "site@sfdc-cancer.fr"
