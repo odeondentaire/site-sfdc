@@ -45,7 +45,7 @@ export const onRequestPost = ({ request, env }) =>
       ...(notification ? { notification } : {}),
     }, id);
     // « email » indique seulement si l'e-mail d'adhésion est parti (le détail est dans R2).
-    return json(adhesion ? { ok: true, id, email: notification.sent ? "envoyé" : "non envoyé", code: notification.sent ? null : String(notification.reason).slice(0, 60) } : { ok: true, id });
+    return json(adhesion ? { ok: true, id, email: notification.sent ? "envoyé" : "non envoyé" } : { ok: true, id });
   });
 
 export const onRequest = ({ env }) => {
