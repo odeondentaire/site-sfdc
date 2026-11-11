@@ -6,6 +6,7 @@
 
 import { readFile, writeFile, mkdir, readdir, cp, rm } from "node:fs/promises";
 import { join, dirname, relative } from "node:path";
+import { createHash } from "node:crypto";
 
 const ROOT = dirname(new URL(import.meta.url).pathname);
 const SRC = join(ROOT, "src");
@@ -40,7 +41,7 @@ function parsePage(raw, file) {
 const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-function render(layout, header, footer, page, urlPath) {
+function render(layout, header, footer, page, urlPath, assetV) {
   const { meta, body } = page;
   const nav = NAV.map(
     (n) =>
@@ -61,6 +62,7 @@ function render(layout, header, footer, page, urlPath) {
     HEADER: header.replace("{{NAV}}", nav),
     FOOTER: footer.replace("{{YEAR}}", String(new Date().getFullYear())),
     CONTENT: body,
+    ASSET_V: assetV,
   };
   return layout.replace(/\{\{(\w+)\}\}/g, (all, k) => (k in vars ? vars[k] : all));
 }
@@ -74,13 +76,18 @@ async function main() {
     ["layout.html", "header.html", "footer.html"].map((f) => readFile(join(SRC, "partials", f), "utf8"))
   );
 
+  // Empreinte des CSS/JS : force les navigateurs à recharger les fichiers modifiés.
+  const hash = createHash("sha256");
+  for (const f of ["assets/css/site.css", "assets/js/site.js"]) hash.update(await readFile(join(ROOT, "static", f)));
+  const assetV = hash.digest("hex").slice(0, 10);
+
   const pagesDir = join(SRC, "pages");
   const sitemap = [];
   for (const file of await walk(pagesDir)) {
     const rel = relative(pagesDir, file);
     const page = parsePage(await readFile(file, "utf8"), rel);
     const urlPath = rel === "404.html" ? "/404" : "/" + rel.replace(/index\.html$/, "");
-    const html = render(layout, header, footer, page, urlPath);
+    const html = render(layout, header, footer, page, urlPath, assetV);
     const dest = join(OUT, rel);
     await mkdir(dirname(dest), { recursive: true });
     await writeFile(dest, html);
