@@ -1,9 +1,9 @@
-<!--{"title":"Contact","description":"Contacter la Société française de dentisterie en cancérologie (SFDC) : formulaire et adresse e-mail.","nav":"contact"}-->
+<!--{"title":"Contact","description":"Contacter la Société française de dentisterie en cancérologie (SFDC) ou demander son adhésion : formulaire et adresse e-mail.","nav":"contact"}-->
 <section class="page-hero">
   <div class="container">
     <p class="breadcrumb"><a href="/">Accueil</a> › Contact</p>
     <h1>Contact</h1>
-    <p class="lead">Une question, une proposition de partenariat, une demande de formation ou de presse&nbsp;? Écrivez-nous.</p>
+    <p class="lead">Une demande d'adhésion, une question, une proposition de partenariat, une demande de formation ou de presse&nbsp;? Écrivez-nous.</p>
   </div>
 </section>
 
@@ -14,11 +14,12 @@
       <div class="callout callout-warning">
         <p><strong>La SFDC ne délivre pas d'avis médical personnalisé</strong> et ne peut pas répondre aux urgences. Pour toute question sur votre santé, adressez-vous à votre médecin, à votre chirurgien-dentiste ou à votre équipe soignante. En cas d'urgence, appelez le 15 ou le 112.</p>
       </div>
-      <form class="form card" data-endpoint="/api/contact" data-success="Merci ! Votre message a bien été envoyé. Nous vous répondrons par e-mail." novalidate>
+      <form class="form card" data-endpoint="/api/contact" data-success="Merci ! Votre message a bien été envoyé. Nous vous répondrons par e-mail." data-success-adhesion="Merci ! Votre demande d'adhésion a bien été enregistrée. Nous vous enverrons par e-mail le montant de la cotisation et le RIB de l'association." novalidate>
         <div class="field">
-          <label for="c-profil">Vous êtes <span class="req" aria-hidden="true">*</span></label>
+          <label for="c-profil">Vous êtes / votre demande <span class="req" aria-hidden="true">*</span></label>
           <select id="c-profil" name="profil" required>
             <option value="">Choisir…</option>
+            <option>Demande d'adhésion</option>
             <option>Professionnel de santé</option>
             <option>Patient ou aidant</option>
             <option>Institution</option>
@@ -26,8 +27,24 @@
             <option>Autre</option>
           </select>
         </div>
+
+        <fieldset class="adhesion-fields" id="adhesion-fields" hidden>
+          <legend class="visually-hidden">Informations pour l'adhésion</legend>
+          <div class="form-row">
+            <div class="field">
+              <label for="c-type">Type d'adhésion</label>
+              <select id="c-type" name="type_adhesion">
+                <option>Membre associé</option>
+                <option>Membre d'honneur</option>
+              </select>
+            </div>
+            <div class="field"><label for="c-profession">Profession <span class="hint">ex. chirurgien-dentiste, oncologue, pharmacien…</span></label><input id="c-profession" name="profession" type="text" maxlength="120"></div>
+          </div>
+          <div class="field"><label for="c-structure">Structure ou ville d'exercice <span class="hint">facultatif</span></label><input id="c-structure" name="structure" type="text" maxlength="160" autocomplete="organization"></div>
+        </fieldset>
+
         <div class="form-row">
-          <div class="field"><label for="c-nom">Nom <span class="req" aria-hidden="true">*</span></label><input id="c-nom" name="nom" type="text" autocomplete="name" required maxlength="120"></div>
+          <div class="field"><label for="c-nom">Nom et prénom <span class="req" aria-hidden="true">*</span></label><input id="c-nom" name="nom" type="text" autocomplete="name" required maxlength="120"></div>
           <div class="field"><label for="c-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="c-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
         </div>
         <div class="field"><label for="c-objet">Objet <span class="req" aria-hidden="true">*</span></label><input id="c-objet" name="objet" type="text" required maxlength="160"></div>
@@ -35,9 +52,9 @@
 
         <div class="hp" aria-hidden="true"><label for="c-site">Ne pas remplir ce champ</label><input id="c-site" name="site_web" type="text" tabindex="-1" autocomplete="off"></div>
 
-        <label class="choice"><input type="checkbox" name="consentement" value="oui" required> <span>J'accepte que mes données soient utilisées par la SFDC pour répondre à mon message, conformément à la <a href="/confidentialite/">politique de confidentialité</a>. <span class="req" aria-hidden="true">*</span></span></label>
+        <label class="choice"><input type="checkbox" name="consentement" value="oui" required> <span>J'accepte que mes données soient utilisées par la SFDC pour répondre à ma demande, conformément à la <a href="/confidentialite/">politique de confidentialité</a>. <span class="req" aria-hidden="true">*</span></span></label>
 
-        <noscript><p class="todo">Le formulaire nécessite JavaScript. Vous pouvez aussi nous écrire directement à sfdc.dentcancer@gmail.com.</p></noscript>
+        <noscript><p class="callout callout-warning">Le formulaire nécessite JavaScript. Vous pouvez aussi nous écrire directement à sfdc.dentcancer@gmail.com.</p></noscript>
         <div class="form-status" role="status" tabindex="-1" aria-live="polite"></div>
         <div><button class="btn btn-primary" type="submit">Envoyer</button></div>
       </form>
@@ -46,6 +63,8 @@
       <h3>Coordonnées</h3>
       <p><strong>E-mail</strong><br><a href="mailto:sfdc.dentcancer@gmail.com">sfdc.dentcancer@gmail.com</a></p>
       <p><strong>Siège social</strong><br>SFDC – Société française de dentisterie en cancérologie<br>132 boulevard Saint-Germain<br>75006 Paris</p>
+      <h3>Adhésion</h3>
+      <p class="mb-0">Le montant de la cotisation est en cours de définition. Choisissez « Demande d'adhésion » : nous vous enverrons par e-mail le montant et le RIB de l'association. <a href="/adherer/">En savoir plus</a></p>
     </aside>
   </div>
 </section>

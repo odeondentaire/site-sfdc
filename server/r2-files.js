@@ -1,5 +1,7 @@
 // Sert en lecture seule des fichiers publics stockés dans R2
 // (ex. documents/statuts-sfdc.pdf, medias/photo.jpg).
+// Si le fichier n'est pas dans R2, on sert la version présente dans le dépôt
+// (static/documents/, static/medias/) lorsqu'elle existe.
 
 const SAFE_PATH = /^[A-Za-z0-9][A-Za-z0-9._\-\/]{0,200}$/;
 
@@ -10,10 +12,11 @@ export async function serveFromR2(context, prefix) {
   }
   const rel = Array.isArray(params.path) ? params.path.join("/") : String(params.path || "");
   if (!SAFE_PATH.test(rel) || rel.includes("..")) return new Response("Introuvable", { status: 404 });
-  if (!env.SFDC_BUCKET) return new Response("Stockage indisponible", { status: 503 });
+  const fallback = () => (env.ASSETS ? env.ASSETS.fetch(request) : new Response("Introuvable", { status: 404 }));
+  if (!env.SFDC_BUCKET) return fallback();
 
   const object = await env.SFDC_BUCKET.get(`${prefix}/${rel}`, { onlyIf: request.headers });
-  if (object === null) return new Response("Introuvable", { status: 404 });
+  if (object === null) return fallback();
 
   const headers = new Headers();
   object.writeHttpMetadata(headers);

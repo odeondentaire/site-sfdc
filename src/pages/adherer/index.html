@@ -1,110 +1,49 @@
-<!--{"title":"Adhérer","description":"Rejoignez la Société française de dentisterie en cancérologie (SFDC) : membres associés (cotisation annuelle) et membres d'honneur.","nav":"adherer"}-->
+<!--{"title":"Adhérer","description":"Rejoindre la Société française de dentisterie en cancérologie (SFDC) : membres associés et membres d'honneur. Demande d'adhésion par le formulaire de contact.","nav":"adherer"}-->
 <section class="page-hero">
   <div class="container">
     <p class="breadcrumb"><a href="/">Accueil</a> › Adhérer</p>
     <h1>Adhérer à la SFDC</h1>
-    <p class="lead">Rejoindre la SFDC, c'est soutenir l'intégration de la santé bucco-dentaire dans le parcours de soins en cancérologie et participer aux travaux d'une société savante pluriprofessionnelle.</p>
+    <p class="lead">Rejoindre la SFDC, c'est participer au fonctionnement d'une société savante pluriprofessionnelle et à la réalisation de son objet : mieux intégrer la santé bucco-dentaire dans le parcours de soins des patients atteints de cancer.</p>
   </div>
 </section>
 
 <section class="section" aria-labelledby="t-membres">
   <div class="container">
-    <h2 id="t-membres" class="visually-hidden">Les catégories de membres</h2>
+    <div class="section-head">
+      <span class="eyebrow">Article 6 des statuts</span>
+      <h2 id="t-membres">Les catégories de membres</h2>
+      <p>L'association se compose de trois catégories de membres : les membres fondateurs (signataires des statuts), les membres associés et les membres d'honneur.</p>
+    </div>
     <div class="grid grid-2">
       <article class="card">
         <span class="eyebrow">Membre associé</span>
-        <h3>Cotisation annuelle</h3>
-        <p>Catégorie de membre prévue par les statuts, soumise au versement d'une cotisation annuelle. <span class="todo">À compléter : conditions (statuts)</span></p>
-        <p class="mb-0"><strong>Montant :</strong> <span class="todo">À compléter : montant de la cotisation annuelle</span></p>
+        <h3>Personnes physiques ou morales</h3>
+        <p>Sont membres associés les personnes physiques ou morales qui participent au fonctionnement de l'association et à la réalisation de son objet, et qui ont acquitté une cotisation annuelle.</p>
+        <p class="mb-0"><strong>Cotisation :</strong> son montant est fixé chaque année par le conseil d'administration. Il est en cours de définition : nous vous le communiquons avec votre demande d'adhésion.</p>
       </article>
       <article class="card">
         <span class="eyebrow">Membre d'honneur</span>
-        <h3>Sur proposition</h3>
-        <p class="mb-0">Titre décerné selon les modalités prévues par les statuts. <span class="todo">À compléter : conditions d'attribution (statuts)</span></p>
+        <h3>Titre décerné par le conseil d'administration</h3>
+        <p class="mb-0">Le conseil d'administration peut décerner le titre de membre d'honneur à toute personne ayant rendu des services signalés à l'association, ou à des membres associés.</p>
       </article>
     </div>
-    <p class="source">Les conditions d'adhésion sont précisées dans les <a href="/documents/statuts-sfdc.pdf">statuts de l'association</a>.</p>
+    <p class="source">Admission (article 7) : pour faire partie de la SFDC, il faut répondre aux critères d'adhésion décrits dans le règlement intérieur et avoir été agréé par l'assemblée générale sur proposition du conseil d'administration. <a href="/documents/statuts-sfdc.pdf">Lire les statuts (PDF)</a></p>
   </div>
 </section>
 
-<section class="section section-tint" aria-labelledby="t-form">
+<section class="section section-tint" aria-labelledby="t-comment">
   <div class="container narrow">
-    <h2 id="t-form">Formulaire d'adhésion</h2>
-    <p>Les champs marqués d'un <span class="req" aria-hidden="true">*</span> sont obligatoires. Votre demande est examinée par le bureau. Pour les membres associés, le règlement de la cotisation s'effectue ensuite par un lien de paiement sécurisé.</p>
-    <p class="form-legal"><span class="todo">À compléter : lien de paiement de la cotisation (à renseigner dans PAYMENT_URL)</span></p>
-
-    <form class="form card" data-endpoint="/api/adhesion" data-success="Merci ! Votre demande d'adhésion a bien été enregistrée. Le bureau de la SFDC reviendra vers vous par e-mail." novalidate>
-      <fieldset class="field">
-        <legend>Type d'adhésion <span class="req" aria-hidden="true">*</span></legend>
-        <div class="choice-cards">
-          <label class="choice-card"><input type="radio" name="type_adhesion" value="membre-associe" required checked><span><strong>Membre associé</strong><span>Cotisation annuelle</span></span></label>
-          <label class="choice-card"><input type="radio" name="type_adhesion" value="membre-honneur"><span><strong>Membre d'honneur</strong><span>Selon les statuts</span></span></label>
-        </div>
-      </fieldset>
-
-      <div class="form-row">
-        <div class="field">
-          <label for="a-civilite">Civilité</label>
-          <select id="a-civilite" name="civilite">
-            <option value="">—</option>
-            <option>Dr</option><option>Pr</option><option>Mme</option><option>M.</option>
-          </select>
-        </div>
-        <div class="field"></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label for="a-prenom">Prénom <span class="req" aria-hidden="true">*</span></label><input id="a-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="80"></div>
-        <div class="field"><label for="a-nom">Nom <span class="req" aria-hidden="true">*</span></label><input id="a-nom" name="nom" type="text" autocomplete="family-name" required maxlength="80"></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label for="a-email">E-mail <span class="req" aria-hidden="true">*</span></label><input id="a-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
-        <div class="field"><label for="a-tel">Téléphone professionnel <span class="hint">facultatif</span></label><input id="a-tel" name="telephone" type="tel" autocomplete="tel" maxlength="30"></div>
-      </div>
-      <div class="form-row">
-        <div class="field">
-          <label for="a-profession">Profession <span class="req" aria-hidden="true">*</span></label>
-          <select id="a-profession" name="profession" required>
-            <option value="">Choisir…</option>
-            <option>Chirurgien-dentiste</option>
-            <option>Oncologue / radiothérapeute</option>
-            <option>Autre médecin</option>
-            <option>Pharmacien</option>
-            <option>Infirmier</option>
-            <option>Diététicien</option>
-            <option>Orthophoniste</option>
-            <option>Autre professionnel de santé</option>
-            <option>Chercheur / universitaire</option>
-            <option>Patient / aidant</option>
-            <option>Autre</option>
-          </select>
-        </div>
-        <div class="field"><label for="a-specialite">Spécialité <span class="hint">facultatif</span></label><input id="a-specialite" name="specialite" type="text" maxlength="120"></div>
-      </div>
-      <div class="form-row">
-        <div class="field">
-          <label for="a-exercice">Mode d'exercice <span class="hint">facultatif</span></label>
-          <select id="a-exercice" name="mode_exercice">
-            <option value="">—</option>
-            <option>Libéral</option><option>Hospitalier</option><option>Mixte</option><option>Centre de santé</option><option>Universitaire / recherche</option><option>Autre</option>
-          </select>
-        </div>
-        <div class="field"><label for="a-structure">Structure / établissement <span class="hint">facultatif</span></label><input id="a-structure" name="structure" type="text" maxlength="160" autocomplete="organization"></div>
-      </div>
-      <div class="form-row">
-        <div class="field"><label for="a-ville">Ville d'exercice <span class="hint">facultatif</span></label><input id="a-ville" name="ville" type="text" maxlength="80"></div>
-        <div class="field"><label for="a-rpps">N° RPPS <span class="hint">facultatif, professionnels de santé</span></label><input id="a-rpps" name="rpps" type="text" inputmode="numeric" maxlength="20"></div>
-      </div>
-      <div class="field"><label for="a-message">Motivation ou message <span class="hint">facultatif</span></label><textarea id="a-message" name="message" maxlength="2000"></textarea></div>
-
-      <div class="hp" aria-hidden="true"><label for="a-site">Ne pas remplir ce champ</label><input id="a-site" name="site_web" type="text" tabindex="-1" autocomplete="off"></div>
-
-      <label class="choice"><input type="checkbox" name="statuts" value="oui" required> <span>J'ai pris connaissance des <a href="/documents/statuts-sfdc.pdf">statuts</a> de la SFDC. <span class="req" aria-hidden="true">*</span></span></label>
-      <label class="choice"><input type="checkbox" name="consentement" value="oui" required> <span>J'accepte que mes données soient utilisées par la SFDC pour traiter ma demande d'adhésion et gérer ma qualité de membre, conformément à la <a href="/confidentialite/">politique de confidentialité</a>. <span class="req" aria-hidden="true">*</span></span></label>
-
-      <noscript><p class="todo">Le formulaire nécessite JavaScript. Vous pouvez aussi adresser votre demande par e-mail à sfdc.dentcancer@gmail.com.</p></noscript>
-      <div class="form-status" role="status" tabindex="-1" aria-live="polite"></div>
-      <div><button class="btn btn-primary" type="submit">Envoyer ma demande d'adhésion</button></div>
-      <p class="form-legal mb-0">Ne saisissez aucune donnée de santé dans ce formulaire. Vous pouvez exercer vos droits (accès, rectification, effacement) en écrivant à sfdc.dentcancer@gmail.com.</p>
-    </form>
+    <span class="eyebrow">Mode d'emploi</span>
+    <h2 id="t-comment">Comment adhérer&nbsp;?</h2>
+    <ol class="steps-list">
+      <li><strong>Envoyez votre demande</strong> par le formulaire de contact, en choisissant « Demande d'adhésion ».</li>
+      <li><strong>Recevez par e-mail</strong> le montant de la cotisation et le RIB de l'association.</li>
+      <li><strong>Réglez votre cotisation</strong> par virement bancaire.</li>
+      <li>Votre adhésion est soumise à l'<strong>agrément de l'assemblée générale</strong>, sur proposition du conseil d'administration.</li>
+    </ol>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/contact/?sujet=adhesion">Demander mon adhésion</a>
+      <a class="btn btn-outline" href="/documents/statuts-sfdc.pdf">Lire les statuts</a>
+    </div>
   </div>
 </section>

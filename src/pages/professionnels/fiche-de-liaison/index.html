@@ -7,7 +7,6 @@
     <div class="btn-row">
       <button class="btn btn-primary" type="button" data-print>Imprimer / enregistrer en PDF</button>
     </div>
-    <p class="form-legal"><span class="todo">Modèle provisoire : à valider par le comité scientifique de la SFDC</span></p>
   </div>
 </section>
 
@@ -15,7 +14,7 @@
   <div class="container narrow">
     <div class="fiche-head">
       <p class="fiche-brand">SFDC – Société française de dentisterie en cancérologie</p>
-      <h2 class="mt-0">Fiche de liaison oncologie ↔ chirurgien-dentiste</h2>
+      <h2 class="mt-0">Fiche de liaison SFDC–CPTS</h2>
     </div>
 
     <div class="form fiche-form" role="group" aria-label="Fiche de liaison">
@@ -41,46 +40,83 @@
       </fieldset>
 
       <fieldset class="fiche-block">
-        <legend>3. Contexte oncologique</legend>
+        <legend>3. Cancer et traitements</legend>
         <div class="form-row">
           <div class="field"><label for="f-loc">Localisation du cancer</label><input id="f-loc" type="text" autocomplete="off"></div>
           <div class="field"><label for="f-meta">Métastases (localisation)</label><input id="f-meta" type="text" autocomplete="off"></div>
         </div>
         <div class="field">
-          <span class="field-label">Traitements prévus ou en cours</span>
+          <span class="field-label">Traitements en cours ou prévus</span>
           <label class="choice"><input type="checkbox"> Chimiothérapie</label>
-          <label class="choice"><input type="checkbox"> Radiothérapie – zone : ……………………………</label>
-          <label class="choice"><input type="checkbox"> Hormonothérapie</label>
+          <label class="choice"><input type="checkbox"> Radiothérapie tête et cou</label>
+          <label class="choice"><input type="checkbox"> Autre radiothérapie – zone : ……………………………</label>
           <label class="choice"><input type="checkbox"> Thérapie ciblée / immunothérapie</label>
-          <label class="choice"><input type="checkbox"> Traitement antirésorptif osseux (bisphosphonate, dénosumab)</label>
-          <label class="choice"><input type="checkbox"> Chirurgie</label>
+          <label class="choice"><input type="checkbox"> Antirésorptif (bisphosphonate, dénosumab) / antiangiogénique</label>
+          <label class="choice"><input type="checkbox"> Immunosuppression</label>
+          <label class="choice"><input type="checkbox"> Hormonothérapie</label>
           <label class="choice"><input type="checkbox"> Autre : ……………………………</label>
         </div>
-        <div class="field"><label for="f-debut">Date de début prévue des traitements</label><input id="f-debut" type="text" autocomplete="off" placeholder="jj/mm/aaaa"></div>
+        <div class="field"><label for="f-debut">Date de début (prévue) des traitements</label><input id="f-debut" type="text" autocomplete="off" placeholder="jj/mm/aaaa"></div>
       </fieldset>
 
       <fieldset class="fiche-block">
-        <legend>4. Motif de l'orientation</legend>
-        <label class="choice"><input type="checkbox"> Bilan bucco-dentaire initial (annonce du cancer)</label>
-        <label class="choice"><input type="checkbox"> Bilan à l'apparition de métastases / avant traitement antirésorptif</label>
-        <label class="choice"><input type="checkbox"> Signe d'alerte : mucite, douleur, infection, sécheresse, mobilité dentaire, os exposé…</label>
-        <label class="choice"><input type="checkbox"> Gêne à l'alimentation / risque de dénutrition</label>
-        <div class="field"><label for="f-precisions">Précisions</label><textarea id="f-precisions" rows="3"></textarea></div>
+        <legend>4. Alerte buccale</legend>
+        <div class="choice-grid">
+          <label class="choice"><input type="checkbox"> Douleur</label>
+          <label class="choice"><input type="checkbox"> Mucite</label>
+          <label class="choice"><input type="checkbox"> Xérostomie</label>
+          <label class="choice"><input type="checkbox"> Infection</label>
+          <label class="choice"><input type="checkbox"> Saignement</label>
+          <label class="choice"><input type="checkbox"> Prothèse</label>
+          <label class="choice"><input type="checkbox"> Mastication</label>
+          <label class="choice"><input type="checkbox"> Déglutition</label>
+          <label class="choice"><input type="checkbox"> Lésion suspecte</label>
+        </div>
+        <div class="field"><label for="f-buccal">Précisions</label><textarea id="f-buccal" rows="2"></textarea></div>
+      </fieldset>
+
+      <fieldset class="fiche-block">
+        <legend>5. Alerte nutrition</legend>
+        <div class="form-row">
+          <div class="field"><label for="f-poids">Poids actuel</label><input id="f-poids" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-perte">Perte de poids (kg, sur quelle durée)</label><input id="f-perte" type="text" autocomplete="off"></div>
+        </div>
+        <div class="choice-grid">
+          <label class="choice"><input type="checkbox"> Apports diminués</label>
+          <label class="choice"><input type="checkbox"> Texture modifiée</label>
+          <label class="choice"><input type="checkbox"> Hydratation insuffisante</label>
+          <label class="choice"><input type="checkbox"> Compléments nutritionnels oraux</label>
+          <label class="choice"><input type="checkbox"> Perte d'autonomie</label>
+          <label class="choice"><input type="checkbox"> Contexte social fragile</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fiche-block">
+        <legend>6. Action décidée</legend>
+        <div class="choice-grid">
+          <label class="choice"><input type="checkbox"> Conseils donnés</label>
+          <label class="choice"><input type="checkbox"> Prescription</label>
+          <label class="choice"><input type="checkbox"> Orientation chirurgien-dentiste</label>
+          <label class="choice"><input type="checkbox"> Orientation diététicien</label>
+          <label class="choice"><input type="checkbox"> Orientation orthophoniste</label>
+          <label class="choice"><input type="checkbox"> Information de l'équipe d'oncologie</label>
+        </div>
         <div class="field">
           <span class="field-label">Délai souhaité</span>
-          <label class="choice"><input type="radio" name="delai"> Urgent</label>
+          <label class="choice"><input type="radio" name="delai"> Urgence / semi-urgence</label>
           <label class="choice"><input type="radio" name="delai"> Avant le début des traitements</label>
           <label class="choice"><input type="radio" name="delai"> Dans les meilleurs délais</label>
         </div>
+        <div class="field"><label for="f-relais">Professionnel relais</label><input id="f-relais" type="text" autocomplete="off"></div>
       </fieldset>
 
       <fieldset class="fiche-block">
-        <legend>5. Retour du chirurgien-dentiste</legend>
+        <legend>7. Retour du professionnel relais</legend>
         <div class="field"><label for="f-constat">Constatations</label><textarea id="f-constat" rows="3"></textarea></div>
         <div class="field"><label for="f-soins">Soins réalisés / programmés</label><textarea id="f-soins" rows="3"></textarea></div>
         <div class="field"><label for="f-suivi">Recommandations et suivi proposé</label><textarea id="f-suivi" rows="3"></textarea></div>
         <div class="form-row">
-          <div class="field"><label for="f-cd">Chirurgien-dentiste (nom, coordonnées professionnelles)</label><input id="f-cd" type="text" autocomplete="off"></div>
+          <div class="field"><label for="f-cd">Professionnel (nom, coordonnées professionnelles)</label><input id="f-cd" type="text" autocomplete="off"></div>
           <div class="field"><label for="f-cd-date">Date</label><input id="f-cd-date" type="text" autocomplete="off" placeholder="jj/mm/aaaa"></div>
         </div>
       </fieldset>

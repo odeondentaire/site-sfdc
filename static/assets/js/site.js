@@ -20,7 +20,25 @@
     });
   }
 
-  // Formulaires (adhésion, contact) : envoi en JSON vers les fonctions Cloudflare
+  // Formulaire de contact : champs d'adhésion affichés si « Demande d'adhésion »,
+  // présélection via /contact/?sujet=adhesion
+  var profil = document.getElementById("c-profil");
+  var adhesionFields = document.getElementById("adhesion-fields");
+  var ADHESION = "Demande d'adhésion";
+  if (profil && adhesionFields) {
+    var syncAdhesion = function () {
+      var on = profil.value === ADHESION;
+      adhesionFields.hidden = !on;
+      adhesionFields.disabled = !on;
+      var objet = document.getElementById("c-objet");
+      if (on && objet && !objet.value) objet.value = "Demande d'adhésion à la SFDC";
+    };
+    if (/[?&]sujet=adhesion\b/.test(window.location.search)) profil.value = ADHESION;
+    profil.addEventListener("change", syncAdhesion);
+    syncAdhesion();
+  }
+
+  // Formulaires (contact, adhésion) : envoi en JSON vers les fonctions Cloudflare
   document.querySelectorAll("form[data-endpoint]").forEach(function (form) {
     var status = form.querySelector(".form-status");
     var button = form.querySelector('button[type="submit"]');
@@ -57,19 +75,13 @@
             return body;
           });
         })
-        .then(function (body) {
+        .then(function () {
           status.className = "form-status is-ok";
-          status.textContent = form.getAttribute("data-success") || "Merci, votre message a bien été envoyé.";
+          var msg = (data.profil === ADHESION && form.getAttribute("data-success-adhesion")) ||
+            form.getAttribute("data-success") || "Merci, votre message a bien été envoyé.";
+          status.textContent = msg;
           form.reset();
-          if (body.redirect) {
-            var a = document.createElement("a");
-            a.href = body.redirect;
-            a.className = "btn btn-primary";
-            a.rel = "noopener";
-            a.textContent = "Régler ma cotisation";
-            status.appendChild(document.createElement("br"));
-            status.appendChild(a);
-          }
+          if (profil) profil.dispatchEvent(new Event("change"));
           status.focus();
         })
         .catch(function (err) {

@@ -1,46 +1,27 @@
-# Contenus à compléter avant la mise en ligne
+# Contenus à compléter
 
-Ces documents ne m'ont pas été transmis : **statuts**, **tribune ONCD n° 231**, **logo officiel**,
-**présentation « Le Ruban du Sourire »**. Aucun nom, chiffre ni date n'a été inventé : chaque manque
-est signalé sur le site par un repère jaune « À compléter ».
+Sur le site, chaque élément manquant apparaît sous la forme d'un repère jaune « À compléter ».
+Pour les lister : `grep -rn 'class="todo"' src/`.
 
-## Documents et identité
-- [ ] Logo officiel (SVG ou PNG haute définition) : il remplacera le pictogramme dent provisoire
-      (`src/partials/header.html`, `static/assets/img/logo-sfdc-provisoire.svg`, `favicon.svg`).
-- [ ] Statuts en PDF → à déposer dans R2 : `documents/statuts-sfdc.pdf`.
-- [ ] Photos réelles (bureau, événements) → R2 `medias/` ; les visuels actuels sont ceux fournis (générés par IA).
+## Intégré depuis les documents reçus
+- Statuts : objet et 7 missions (art. 4), catégories de membres (art. 6), admission (art. 7),
+  gouvernance (art. 10, 12, 13, 15). Le PDF public `static/documents/statuts-sfdc.pdf` contient
+  les pages 1 à 8 (articles 1 à 20). La page des signatures et le procès-verbal, qui contient une
+  adresse personnelle, ne sont **pas** publiés.
+- Logo officiel (en-tête, favicon, espace presse).
+- Présentation « Le Ruban du Sourire » : chiffres, question centrale, 3 axes, calendrier sur 30 mois,
+  comité scientifique, parrains. Le détail du budget et les notes internes ne sont pas publiés.
+- Présentation CPTS : objectifs pédagogiques, dépistage « 90 secondes », signes d'alerte,
+  orientation, parcours, rôles, fiche de liaison, références.
+- La Lettre de l'ONCD n° 231 (juillet-août 2026, p. 8) : soutien de l'Ordre et extrait de la tribune.
 
-## La SFDC (`src/pages/la-sfdc/index.html`)
-- [ ] Les 7 missions de l'article 4 des statuts (texte exact).
-- [ ] Rôle du comité scientifique selon les statuts.
-- [ ] Biographies : Dr Richard Dahan, Pr Muriel Dahan, Dr Lenny Dahan (+ photos éventuelles).
-- [ ] Liste des membres du comité scientifique (présentation Ruban du Sourire).
-
-## Accueil et Ruban du Sourire
-- [ ] Références bibliographiques des chiffres clés (14-35 %, 30-40 %, ≈ 10 %).
-- [ ] Calendrier du projet, date de remise du prix, lien vers l'annonce officielle.
-- [ ] Fonctions exactes et citations des parrains (Pr Jean-Yves Blay, Dr Alain Durand).
-
-## Professionnels
-- [ ] Formation CPTS Paris 8e, 9e, 17e : date, lieu, programme, intervenants, inscription.
-- [ ] Protocole officiel du dépistage « 90 secondes » (une trame indicative est en place).
-- [ ] Validation par le comité scientifique : signes d'alerte, tableau « Quand orienter », fiche de liaison, références (HAS, INCa…).
-
-## Patients
-- [ ] Validation des conseils (gestes, alimentation) par le comité scientifique.
-
-## Actualités
-- [ ] Titre, extrait validé et lien de la tribune du Pr Muriel Dahan (La Lettre de l'ONCD n° 231, déc. 2025).
-- [ ] Date et texte/lien de l'annonce du soutien de l'Ordre.
-- [ ] Dossier de presse.
-
-## Adhésion
-- [ ] Montant de la cotisation annuelle (membre associé).
-- [ ] Conditions des membres associés et d'honneur (statuts).
-- [ ] Lien de paiement → `PAYMENT_URL` dans `wrangler.toml`.
-
-## Mentions légales et RGPD
+## Reste à fournir
+- [ ] Prénoms complets et rattachements : Dr J.-J. Baranes, Dr G. Rougier, B. Heuls.
+- [ ] Références bibliographiques des chiffres clés (14-35 %, 30-40 %, 8-9 %, ≈ 10 %).
+- [ ] Formation CPTS : date, horaires, lieu, modalités d'inscription.
+- [ ] Tribune du Pr Muriel Dahan : date et titre du n° 226 de La Lettre, lien éventuel.
 - [ ] Numéro RNA (et SIRET le cas échéant).
-- [ ] Confirmer le directeur de la publication (Dr Richard Dahan proposé).
-- [ ] Valider les durées de conservation des données.
+- [ ] Valider les durées de conservation des données (politique de confidentialité).
 - [ ] Localisation du bucket R2 (juridiction UE recommandée).
+- [ ] Photos réelles, à déposer dans R2 sous `medias/`.
+- [ ] Montant de la cotisation : quand il sera fixé, il pourra être affiché sur la page Adhérer.

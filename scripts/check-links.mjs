@@ -23,8 +23,9 @@ for (const file of await walk(DIST)) {
   const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
   for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (/^(https?:|mailto:|tel:|data:)/.test(url)) continue;
-    const [path, hash] = url.split("#");
-    if (!path && hash) {
+    const [pathQ, hash] = url.split("#");
+    const path = pathQ.split("?")[0];
+    if (!pathQ && hash) {
       if (!ids.has(hash)) { console.error(`✗ ${file}: ancre #${hash} absente`); errors++; }
       continue;
     }

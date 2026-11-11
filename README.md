@@ -10,7 +10,7 @@ avec des **Pages Functions** pour les formulaires et les fichiers stockés dans 
 | `src/pages/` | Contenu des pages (une page = un `index.html` avec ses métadonnées JSON en tête) |
 | `src/partials/` | Gabarit commun : `<head>`, en-tête, pied de page |
 | `static/` | Fichiers copiés tels quels : CSS, JS, polices, images, `_headers`, `_redirects`, `robots.txt` |
-| `functions/` | Fonctions Cloudflare : `/api/adhesion`, `/api/contact`, `/documents/*`, `/medias/*`, redirection des domaines |
+| `functions/` | Fonctions Cloudflare : `/api/contact` (contact et demandes d'adhésion), `/documents/*`, `/medias/*`, redirection des domaines |
 | `server/` | Code partagé par les fonctions |
 | `build.mjs` | Générateur sans dépendance → `dist/` |
 
@@ -39,16 +39,17 @@ npm run dev        # serveur local avec fonctions et R2 simulé (http://localhos
    `www.dentcancer.fr`, `dentcancer.com` et `www.dentcancer.com` au projet Pages.
    `functions/_middleware.js` redirige (301) tous les domaines secondaires vers `https://sfdc-cancer.fr`.
    Alternative possible : une règle « Bulk Redirects » dans Cloudflare.
-5. **Lien de paiement** : renseigner `PAYMENT_URL` dans `wrangler.toml` (section `[vars]`).
-   Après une demande d'adhésion « membre associé », un bouton « Régler ma cotisation » s'affiche alors.
+5. **Adhésions** : la page « Adhérer » renvoie vers le formulaire de contact (`/contact/?sujet=adhesion`).
+   Les demandes sont enregistrées dans `formulaires/adhesions/` ; le bureau répond par e-mail avec le
+   montant de la cotisation et le RIB (paiement par virement).
 
 ## Organisation du bucket R2 `database-sfdc`
 
 | Préfixe | Contenu | Accès |
 |---|---|---|
-| `formulaires/adhesions/AAAA/MM/*.json` | Demandes d'adhésion | privé (tableau de bord Cloudflare) |
+| `formulaires/adhesions/AAAA/MM/*.json` | Demandes d'adhésion (profil « Demande d'adhésion » du formulaire de contact) | privé (tableau de bord Cloudflare) |
 | `formulaires/contact/AAAA/MM/*.json` | Messages de contact | privé |
-| `documents/` | PDF publics, ex. `documents/statuts-sfdc.pdf` → `https://sfdc-cancer.fr/documents/statuts-sfdc.pdf` | public en lecture |
+| `documents/` | PDF publics → `https://sfdc-cancer.fr/documents/<fichier>`. Un fichier déposé ici remplace celui du dépôt (`static/documents/`) | public en lecture |
 | `medias/` | Photos définitives → `https://sfdc-cancer.fr/medias/<fichier>` | public en lecture |
 
 > Ne jamais déposer de fichier confidentiel dans `documents/` ou `medias/` : ces préfixes sont publics.
