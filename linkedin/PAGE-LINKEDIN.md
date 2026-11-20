@@ -29,7 +29,7 @@ La SFDC milite pour :
 
 Nos missions : élaborer des recommandations pour les patients et les professionnels, sensibiliser les autorités scientifiques et institutionnelles, assurer une veille internationale, former les professionnels et accompagner l'éducation thérapeutique, animer un réseau pluriprofessionnel ville–hôpital, diffuser l'information et mener des projets de recherche.
 
-Projet phare : « Le Ruban du Sourire », lauréat du Prix Ruban Rose Qualité de vie 2026, pour un examen bucco-dentaire systématique dès l'annonce chez toutes les patientes atteintes d'un cancer du sein.
+Projet phare : « Le Ruban du Sourire », en lice pour le Prix Ruban Rose Qualité de vie 2026, pour un examen bucco-dentaire systématique dès l'annonce chez toutes les patientes atteintes d'un cancer du sein.
 
 La SFDC rassemble chirurgiens-dentistes, oncologues, équipes hospitalières, médecins, pharmaciens, infirmiers, diététiciens, orthophonistes, CPTS, patients et aidants.
 
@@ -64,7 +64,7 @@ Nous lançons la page LinkedIn de la Société française de dentisterie en canc
 
 Mucites, sécheresse, infections, douleurs : les traitements du cancer touchent souvent la bouche, avec des conséquences sur l'alimentation, la parole et la qualité de vie. La SFDC, société savante pluriprofessionnelle, milite pour un bilan bucco-dentaire standardisé dès l'annonce du cancer ou l'apparition de métastases.
 
-Notre projet « Le Ruban du Sourire » est lauréat du Prix Ruban Rose Qualité de vie 2026.
+Notre projet « Le Ruban du Sourire » est en lice pour le Prix Ruban Rose Qualité de vie 2026. Résultats le 1er décembre : restez connectés !
 
 Chirurgiens-dentistes, oncologues, professionnels de ville, patients et aidants : suivez-nous et rejoignez-nous sur https://sfdc-cancer.fr
 
